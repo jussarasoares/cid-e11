@@ -1,6 +1,19 @@
 {
     "compilerOptions": {
-      "preserveConstEnums": true
+      "outDir": "build/dist",
+      "module": "esnext",
+      "target": "esnext",
+      "lib": ["es6", "dom", "esnext"],
+      "sourceMap": true,
+      "allowJs": true,
+      "jsx": "react-jsx",
+      "moduleResolution": "node",
+      "rootDir": "src",
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noImplicitAny": true,
+      "strictNullChecks": true,
+      "allowSyntheticDefaultImports": true,
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules", "**/*.test.ts"]
