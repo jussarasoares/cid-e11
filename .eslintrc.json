@@ -5,9 +5,9 @@
     },
     "extends": [
       "eslint:recommended",
-      "plugin:react/recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
       "plugin:@typescript-eslint/recommended",
-      "plugin:prettier/recommended"
+      "prettier"
     ],
     "overrides": [
     ],
@@ -18,13 +18,13 @@
     },
     "plugins": [
       "react", 
-      "react-hooks", 
-      "@typescript-eslint", 
+      "react-hooks",
+      "@typescript-eslint",
       "prettier"
     ],
     "ignorePatterns": ["node_modules", "public", "dist", "coverage"],
     "globals": {
         "JSX": true,
         "NodeJS": true
-      }
+    }
 }
