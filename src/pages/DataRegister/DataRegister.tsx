@@ -1,12 +1,24 @@
-import React, { ReactElement } from "react";
-import { Typography } from "antd";
+import { ReactElement } from 'react'
+import { Layout, Typography } from 'antd'
+import { Content } from 'antd/lib/layout/layout'
+import TableRegister from '../../components/TableRegister/TableRegister'
 
 function DataRegister(): ReactElement {
-  return (
-    <Typography.Title level={2} style={{ color: "#A9A9A9", marginTop: "10px" }}>
-      Mellitus
-    </Typography.Title>
-  );
+    return (
+        <Layout style={{ height: '100vh' }}>
+            <Content
+                style={{
+                    backgroundColor: '#ebf7eb',
+                    padding: '50px',
+                }}
+            >
+                <Typography.Title level={4} style={{ color: '#6a6d6b' }}>
+                    Seu histórico de medições
+                </Typography.Title>
+                <TableRegister />
+            </Content>
+        </Layout>
+    )
 }
 
-export default DataRegister;
+export default DataRegister

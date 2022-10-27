@@ -8,28 +8,40 @@ const { Header, Content, Footer } = Layout
 function Main(): ReactElement {
     return (
         <Layout style={{ height: '100vh' }}>
-            <Header style={{ backgroundColor: '#98FB98' }}>
+            <Header style={{ backgroundColor: '#c2f1c2' }}>
                 <Typography.Title
                     level={2}
-                    style={{ color: '#A9A9A9', marginTop: '10px' }}
+                    style={{ color: '#6a6d6b', marginTop: '10px' }}
                 >
                     Mellitus
                 </Typography.Title>
             </Header>
-            <Content style={{ backgroundColor: '#FFFFFF', paddingTop: '50px' }}>
+            <Content style={{ backgroundColor: '#ebf7eb', paddingTop: '50px' }}>
                 <Row>
-                    <Col span={12} offset={6}>
-                        <Typography.Title level={4}>
+                    <Col span={8} offset={2}>
+                        <Typography.Title
+                            level={4}
+                            style={{ color: '#6a6d6b' }}
+                        >
                             Crie sua conta
+                        </Typography.Title>
+                        <FormRegister />
+                    </Col>
+                    <Col span={8} offset={2}>
+                        <Typography.Title
+                            level={4}
+                            style={{ color: '#6a6d6b' }}
+                        >
+                            Comece seu registro de glicemia
                         </Typography.Title>
                         <FormRegister />
                     </Col>
                 </Row>
             </Content>
-            <Footer style={{ backgroundColor: '#98FB98' }}>
+            <Footer style={{ backgroundColor: '#eef5ee' }}>
                 <Link to={'/data-register'}>
-                    <Typography.Title level={4}>
-                        Comece agora mesmo
+                    <Typography.Title level={4} style={{ color: '#6a6d6b' }}>
+                        Acesse seu histórico
                     </Typography.Title>
                 </Link>
             </Footer>
