@@ -1,7 +1,7 @@
 import { ReactElement } from 'react'
-import FormRegister from '../../components/FormRegister/FormRegister'
 import { Layout, Row, Col, Typography } from 'antd'
 import { Link } from 'react-router-dom'
+import FormRegister from '../../components/FormRegister/FormRegister'
 
 const { Header, Content, Footer } = Layout
 
