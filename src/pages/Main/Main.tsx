@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import FormRegister from '../../components/Form/Form'
+import FormRegister from '../../components/FormRegister/FormRegister'
 import { Layout, Row, Col, Typography } from 'antd'
 import { Link } from 'react-router-dom'
 
@@ -27,21 +27,17 @@ function Main(): ReactElement {
                         </Typography.Title>
                         <FormRegister />
                     </Col>
-                    <Col span={8} offset={2}>
-                        <Typography.Title
-                            level={4}
-                            style={{ color: '#6a6d6b' }}
-                        >
-                            Comece seu registro de glicemia
-                        </Typography.Title>
-                        <FormRegister />
-                    </Col>
                 </Row>
             </Content>
             <Footer style={{ backgroundColor: '#eef5ee' }}>
                 <Link to={'/data-register'}>
                     <Typography.Title level={4} style={{ color: '#6a6d6b' }}>
                         Acesse seu histórico
+                    </Typography.Title>
+                </Link>
+                <Link to={'/measure-register'}>
+                    <Typography.Title level={4} style={{ color: '#6a6d6b' }}>
+                        Cadastre suas medidas
                     </Typography.Title>
                 </Link>
             </Footer>
