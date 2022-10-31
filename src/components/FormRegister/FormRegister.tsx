@@ -2,6 +2,7 @@ import { ReactElement } from 'react'
 import { Button, Form, Input } from 'antd'
 import 'antd/dist/antd.css'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
+import api from '../../services/api'
 
 interface IFormInput {
     name: string
@@ -15,7 +16,14 @@ function FormRegister(): ReactElement {
         handleSubmit,
         // formState: { errors },
     } = useForm<IFormInput>()
-    const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data)
+
+    const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+        try {
+            await api.post('/user', data)
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
     return (
         <Form onFinish={handleSubmit(onSubmit)}>
