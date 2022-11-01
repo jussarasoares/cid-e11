@@ -1,13 +1,26 @@
 import { ReactElement } from 'react'
-import { Button, Form, Input, Layout, Row, Col, Typography } from 'antd'
+import {
+    Button,
+    Form,
+    Input,
+    Layout,
+    Row,
+    Col,
+    Typography,
+    DatePicker,
+} from 'antd'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
 
 const { Header, Content } = Layout
 
 interface IFormInput {
-    name: string
-    email: string
-    password: string
+    date: string
+    measure: string
+    note: string
+    fast: string
+    coffee: string
+    lunch: string
+    dinner: string
 }
 
 function MeasureRegister(): ReactElement {
@@ -20,14 +33,7 @@ function MeasureRegister(): ReactElement {
 
     return (
         <Layout style={{ height: '100vh' }}>
-            <Header style={{ backgroundColor: '#c2f1c2' }}>
-                <Typography.Title
-                    level={2}
-                    style={{ color: '#6a6d6b', marginTop: '10px' }}
-                >
-                    Mellitus
-                </Typography.Title>
-            </Header>
+            <Header style={{ backgroundColor: '#c2f1c2' }} />
             <Content style={{ backgroundColor: '#ebf7eb', paddingTop: '50px' }}>
                 <Row>
                     <Col span={8} offset={2}>
@@ -38,37 +44,61 @@ function MeasureRegister(): ReactElement {
                             Registre suas medidas
                         </Typography.Title>
                         <Form onFinish={handleSubmit(onSubmit)}>
-                            <Form.Item label='Nome'>
+                            <Form.Item label='Data'>
                                 <Controller
-                                    name='name'
+                                    name='date'
                                     control={control}
                                     render={({ field }) => (
                                         <Input
-                                            placeholder='Digite seu nome completo'
+                                            placeholder='Digite a data do dia que você mediu'
                                             {...field}
                                         />
                                     )}
                                 />
                             </Form.Item>
-                            <Form.Item label='Email'>
+                            <Form.Item label='Jejum'>
                                 <Controller
-                                    name='email'
+                                    name='fast'
                                     control={control}
                                     render={({ field }) => (
                                         <Input
-                                            placeholder='Digite seu melhor email'
+                                            placeholder='Insira o valor do mg/dL'
                                             {...field}
                                         />
                                     )}
                                 />
                             </Form.Item>
-                            <Form.Item label='Senha'>
+                            <Form.Item label='2h depois do café'>
                                 <Controller
-                                    name='password'
+                                    name='coffee'
                                     control={control}
                                     render={({ field }) => (
                                         <Input
-                                            placeholder='Digite uma senha'
+                                            placeholder='Insira o valor do mg/dL'
+                                            {...field}
+                                        />
+                                    )}
+                                />
+                            </Form.Item>
+                            <Form.Item label='2h depois do almoço'>
+                                <Controller
+                                    name='lunch'
+                                    control={control}
+                                    render={({ field }) => (
+                                        <Input
+                                            placeholder='Insira o valor do mg/dL'
+                                            {...field}
+                                        />
+                                    )}
+                                />
+                            </Form.Item>
+                            <Form.Item label='2h depois do jantar'>
+                                <Controller
+                                    name='dinner'
+                                    control={control}
+                                    render={({ field }) => (
+                                        <Input
+                                            placeholder='Insira o valor do mg/dL'
                                             {...field}
                                         />
                                     )}
