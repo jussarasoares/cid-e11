@@ -1,22 +1,19 @@
-import { ReactElement } from 'react'
-import {
-    Button,
-    Form,
-    Input,
-    Layout,
-    Row,
-    Col,
-    Typography,
-    DatePicker,
-} from 'antd'
+import { ReactElement, useEffect } from 'react'
+import { Button, Form, Input, Layout, Row, Col, Typography } from 'antd'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
+import { useParams } from 'react-router-dom'
+import api from '../../services/api'
 
 const { Header, Content } = Layout
 
 interface IFormInput {
+    id?: string
     date: string
-    measure: string
+    measure: IMensure
     note: string
+}
+
+interface IMensure {
     fast: string
     coffee: string
     lunch: string
@@ -27,9 +24,37 @@ function MeasureRegister(): ReactElement {
     const {
         control,
         handleSubmit,
+        reset,
         // formState: { errors },
     } = useForm<IFormInput>()
-    const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data)
+    const { userId, id } = useParams()
+
+    const fetchMeasure = async (id: string) => {
+        try {
+            const { data } = await api.get(`/measure/${id}`)
+            reset(data.result)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    useEffect(() => {
+        if (id) {
+            fetchMeasure(id)
+        }
+    }, [id])
+
+    const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+        try {
+            if (id) {
+                await api.put(`/measure/edit/${id}`, data)
+                return
+            }
+            await api.post(`/measure/${userId}`, data)
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
     return (
         <Layout style={{ height: '100vh' }}>
@@ -58,7 +83,7 @@ function MeasureRegister(): ReactElement {
                             </Form.Item>
                             <Form.Item label='Jejum'>
                                 <Controller
-                                    name='fast'
+                                    name='measure.fast'
                                     control={control}
                                     render={({ field }) => (
                                         <Input
@@ -70,7 +95,7 @@ function MeasureRegister(): ReactElement {
                             </Form.Item>
                             <Form.Item label='2h depois do café'>
                                 <Controller
-                                    name='coffee'
+                                    name='measure.coffee'
                                     control={control}
                                     render={({ field }) => (
                                         <Input
@@ -82,7 +107,7 @@ function MeasureRegister(): ReactElement {
                             </Form.Item>
                             <Form.Item label='2h depois do almoço'>
                                 <Controller
-                                    name='lunch'
+                                    name='measure.lunch'
                                     control={control}
                                     render={({ field }) => (
                                         <Input
@@ -94,11 +119,23 @@ function MeasureRegister(): ReactElement {
                             </Form.Item>
                             <Form.Item label='2h depois do jantar'>
                                 <Controller
-                                    name='dinner'
+                                    name='measure.dinner'
                                     control={control}
                                     render={({ field }) => (
                                         <Input
                                             placeholder='Insira o valor do mg/dL'
+                                            {...field}
+                                        />
+                                    )}
+                                />
+                            </Form.Item>
+                            <Form.Item label='Observações'>
+                                <Controller
+                                    name='note'
+                                    control={control}
+                                    render={({ field }) => (
+                                        <Input
+                                            placeholder='Alguma observação?'
                                             {...field}
                                         />
                                     )}

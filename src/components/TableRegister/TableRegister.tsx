@@ -1,6 +1,7 @@
 import { ReactElement } from 'react'
 import { Button, Space, Table } from 'antd'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
 
 const { Column } = Table
 
@@ -9,6 +10,7 @@ interface DataTable {
     date: Date
     measure: object
     note: string
+    userId: string
 }
 
 interface TableRegisterProps {
@@ -17,6 +19,8 @@ interface TableRegisterProps {
 }
 
 function TableRegister(props: TableRegisterProps): ReactElement {
+    const navigate = useNavigate()
+
     return (
         <Table
             rowKey='id'
@@ -49,6 +53,11 @@ function TableRegister(props: TableRegisterProps): ReactElement {
                             type='default'
                             shape='circle'
                             icon={<EditOutlined />}
+                            onClick={() =>
+                                navigate(
+                                    `/measure-register/${record.userId}/${record.id}`
+                                )
+                            }
                         />
                         <Button
                             type='default'

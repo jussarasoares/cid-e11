@@ -35,7 +35,7 @@ function Main(): ReactElement {
                         Acesse seu histórico
                     </Typography.Title>
                 </Link>
-                <Link to={'/measure-register'}>
+                <Link to={'/measure-register/1'}>
                     <Typography.Title level={4} style={{ color: '#6a6d6b' }}>
                         Cadastre suas medidas
                     </Typography.Title>

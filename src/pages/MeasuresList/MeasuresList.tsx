@@ -11,12 +11,12 @@ interface DataTable {
     note: string
 }
 
-function DataRegister(): ReactElement {
+function MeasuresList(): ReactElement {
     const [measure, setMeasure] = useState([])
 
     const fetchMeasure = async () => {
         try {
-            const { data } = await api.get('/measure/1')
+            const { data } = await api.get('/user-measure/1')
             setMeasure(data.result)
         } catch (e) {
             console.log(e)
@@ -60,4 +60,4 @@ function DataRegister(): ReactElement {
     )
 }
 
-export default DataRegister
+export default MeasuresList
