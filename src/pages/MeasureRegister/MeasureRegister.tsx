@@ -1,7 +1,17 @@
 import { ReactElement, useEffect } from 'react'
-import { Button, Form, Input, Layout, Row, Col, Typography } from 'antd'
+import {
+    Button,
+    Form,
+    Input,
+    Layout,
+    Row,
+    Col,
+    Typography,
+    DatePicker,
+} from 'antd'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
+import moment from 'moment'
 import api from '../../services/api'
 
 const { Header, Content } = Layout
@@ -9,15 +19,11 @@ const { Header, Content } = Layout
 interface IFormInput {
     id?: string
     date: string
-    measure: IMensure
-    note: string
-}
-
-interface IMensure {
     fast: string
     coffee: string
     lunch: string
     dinner: string
+    note: string
 }
 
 function MeasureRegister(): ReactElement {
@@ -74,16 +80,18 @@ function MeasureRegister(): ReactElement {
                                     name='date'
                                     control={control}
                                     render={({ field }) => (
-                                        <Input
-                                            placeholder='Digite a data do dia que você mediu'
+                                        <DatePicker
                                             {...field}
+                                            value={moment(field.value)}
+                                            format='DD/MM/YYYY'
+                                            allowClear={false}
                                         />
                                     )}
                                 />
                             </Form.Item>
                             <Form.Item label='Jejum'>
                                 <Controller
-                                    name='measure.fast'
+                                    name='fast'
                                     control={control}
                                     render={({ field }) => (
                                         <Input
@@ -95,7 +103,7 @@ function MeasureRegister(): ReactElement {
                             </Form.Item>
                             <Form.Item label='2h depois do café'>
                                 <Controller
-                                    name='measure.coffee'
+                                    name='coffee'
                                     control={control}
                                     render={({ field }) => (
                                         <Input
@@ -107,7 +115,7 @@ function MeasureRegister(): ReactElement {
                             </Form.Item>
                             <Form.Item label='2h depois do almoço'>
                                 <Controller
-                                    name='measure.lunch'
+                                    name='lunch'
                                     control={control}
                                     render={({ field }) => (
                                         <Input
@@ -119,7 +127,7 @@ function MeasureRegister(): ReactElement {
                             </Form.Item>
                             <Form.Item label='2h depois do jantar'>
                                 <Controller
-                                    name='measure.dinner'
+                                    name='dinner'
                                     control={control}
                                     render={({ field }) => (
                                         <Input

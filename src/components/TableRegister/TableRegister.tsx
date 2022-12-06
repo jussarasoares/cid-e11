@@ -28,20 +28,20 @@ function TableRegister(props: TableRegisterProps): ReactElement {
             style={{ paddingTop: '30px' }}
         >
             <Column title='Data' dataIndex='date' key='date' />
-            <Column title='Jejum' dataIndex={['measure', 'fast']} key='fast' />
+            <Column title='Jejum' dataIndex={'fast'} key='fast' />
             <Column
                 title='2h depois do café'
-                dataIndex={['measure', 'coffee']}
+                dataIndex={['coffee']}
                 key='coffee'
             />
             <Column
                 title='2h depois do almoço'
-                dataIndex={['measure', 'lunch']}
+                dataIndex={['lunch']}
                 key='lunch'
             />
             <Column
                 title='2h depois do jantar'
-                dataIndex={['measure', 'dinner']}
+                dataIndex={['dinner']}
                 key='dinner'
             />
             <Column title='Observações' dataIndex='note' key='note' />
