@@ -1,7 +1,10 @@
 import { ReactElement } from 'react'
-import { Layout, Row, Col, Typography } from 'antd'
+import { Layout, Row, Col, Typography, Image } from 'antd'
 import { Link } from 'react-router-dom'
 import FormRegister from '../../components/FormRegister/FormRegister'
+import Sider from 'antd/lib/layout/Sider'
+
+import imageFruit from '../../assets/mellitus.png'
 
 const { Header, Content, Footer } = Layout
 
@@ -16,19 +19,32 @@ function Main(): ReactElement {
                     Mellitus
                 </Typography.Title>
             </Header>
-            <Content style={{ backgroundColor: '#ebf7eb', paddingTop: '50px' }}>
-                <Row>
-                    <Col span={8} offset={2}>
-                        <Typography.Title
-                            level={4}
-                            style={{ color: '#6a6d6b' }}
-                        >
-                            Crie sua conta
-                        </Typography.Title>
-                        <FormRegister />
-                    </Col>
-                </Row>
-            </Content>
+            <Row>
+                <Col span={12}>
+                    <Image src={imageFruit} width={'100%'} preview={false} />
+                </Col>
+                <Col span={12}>
+                    <Content
+                        style={{
+                            backgroundColor: '#ebf7eb',
+                            paddingTop: '50px',
+                        }}
+                    >
+                        <Row>
+                            <Col span={8} offset={2}>
+                                <Typography.Title
+                                    level={4}
+                                    style={{ color: '#6a6d6b' }}
+                                >
+                                    Crie sua conta
+                                </Typography.Title>
+                                <FormRegister />
+                            </Col>
+                        </Row>
+                    </Content>
+                </Col>
+            </Row>
+
             <Footer style={{ backgroundColor: '#eef5ee' }}>
                 <Link to={'/data-register'}>
                     <Typography.Title level={4} style={{ color: '#6a6d6b' }}>

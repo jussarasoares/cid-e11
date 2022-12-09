@@ -1,5 +1,5 @@
 import { ReactElement, useEffect, useState } from 'react'
-import { Layout, Typography } from 'antd'
+import { Layout, Typography, message } from 'antd'
 import { Content } from 'antd/lib/layout/layout'
 import TableRegister from '../../components/TableRegister/TableRegister'
 import api from '../../services/api'
@@ -13,6 +13,7 @@ interface DataTable {
 
 function MeasuresList(): ReactElement {
     const [measure, setMeasure] = useState([])
+    const [messageApi, contextHolder] = message.useMessage()
 
     const fetchMeasure = async () => {
         try {
@@ -35,13 +36,21 @@ function MeasuresList(): ReactElement {
                     return data.id !== id
                 })
             )
+            messageApi.open({
+                type: 'success',
+                content: 'Excluído com sucesso!',
+            })
         } catch (e) {
-            console.log(e)
+            messageApi.open({
+                type: 'error',
+                content: 'Não foi possível excluir os dados :(',
+            })
         }
     }
 
     return (
         <Layout style={{ height: '100vh' }}>
+            {contextHolder}
             <Content
                 style={{
                     backgroundColor: '#ebf7eb',

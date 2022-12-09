@@ -3,14 +3,16 @@ import {
     Button,
     Form,
     Input,
+    InputNumber,
     Layout,
     Row,
     Col,
     Typography,
     DatePicker,
+    message,
 } from 'antd'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import moment from 'moment'
 import api from '../../services/api'
 
@@ -32,8 +34,12 @@ function MeasureRegister(): ReactElement {
         handleSubmit,
         reset,
         // formState: { errors },
-    } = useForm<IFormInput>()
+    } = useForm<IFormInput>({
+        defaultValues: { date: moment().toString() },
+    })
     const { userId, id } = useParams()
+    const [messageApi, contextHolder] = message.useMessage()
+    const navigate = useNavigate()
 
     const fetchMeasure = async (id: string) => {
         try {
@@ -50,15 +56,32 @@ function MeasureRegister(): ReactElement {
         }
     }, [id])
 
-    const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    const onSubmit: SubmitHandler<IFormInput> = async (payload) => {
         try {
             if (id) {
-                await api.put(`/measure/edit/${id}`, data)
+                await api.put(`/measure/edit/${id}`, payload)
+                messageApi.open({
+                    type: 'success',
+                    content: 'Editado com sucesso!',
+                })
+                setTimeout(() => {
+                    navigate(`/data-register`)
+                }, 2500)
                 return
             }
-            await api.post(`/measure/${userId}`, data)
+            await api.post(`/measure/${userId}`, payload)
+            messageApi.open({
+                type: 'success',
+                content: 'Salvo com sucesso!',
+            })
+            setTimeout(() => {
+                navigate(`/data-register`)
+            }, 2500)
         } catch (e) {
-            console.log(e)
+            messageApi.open({
+                type: 'error',
+                content: 'Não foi possível salvar os dados :(',
+            })
         }
     }
 
@@ -66,6 +89,7 @@ function MeasureRegister(): ReactElement {
         <Layout style={{ height: '100vh' }}>
             <Header style={{ backgroundColor: '#c2f1c2' }} />
             <Content style={{ backgroundColor: '#ebf7eb', paddingTop: '50px' }}>
+                {contextHolder}
                 <Row>
                     <Col span={8} offset={2}>
                         <Typography.Title
@@ -94,7 +118,7 @@ function MeasureRegister(): ReactElement {
                                     name='fast'
                                     control={control}
                                     render={({ field }) => (
-                                        <Input
+                                        <InputNumber
                                             placeholder='Insira o valor do mg/dL'
                                             {...field}
                                         />
@@ -106,7 +130,7 @@ function MeasureRegister(): ReactElement {
                                     name='coffee'
                                     control={control}
                                     render={({ field }) => (
-                                        <Input
+                                        <InputNumber
                                             placeholder='Insira o valor do mg/dL'
                                             {...field}
                                         />
@@ -118,7 +142,7 @@ function MeasureRegister(): ReactElement {
                                     name='lunch'
                                     control={control}
                                     render={({ field }) => (
-                                        <Input
+                                        <InputNumber
                                             placeholder='Insira o valor do mg/dL'
                                             {...field}
                                         />
@@ -130,7 +154,7 @@ function MeasureRegister(): ReactElement {
                                     name='dinner'
                                     control={control}
                                     render={({ field }) => (
-                                        <Input
+                                        <InputNumber
                                             placeholder='Insira o valor do mg/dL'
                                             {...field}
                                         />

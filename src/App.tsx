@@ -5,10 +5,15 @@ import './App.css'
 import DataRegister from './pages/MeasuresList/MeasuresList'
 import Main from './pages/Main/Main'
 import MeasureRegister from './pages/MeasureRegister/MeasureRegister'
+import Home from './pages/Home/Home'
 
 const router = createBrowserRouter([
     {
         path: '/',
+        element: <Home />,
+    },
+    {
+        path: '/main',
         element: <Main />,
     },
     {
