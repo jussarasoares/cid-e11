@@ -2,7 +2,7 @@ import { ReactElement } from 'react'
 import { Layout, Button, Typography } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import imageFruit from '../../assets/cide11.jpg'
-import { Header } from 'antd/lib/layout/layout'
+import NavBar from '../../components/NavBar/NavBar'
 
 const { Content } = Layout
 
@@ -18,23 +18,7 @@ function Home(): ReactElement {
                 backgroundPosition: 'center',
             }}
         >
-            <Header
-                style={{
-                    backgroundColor: 'transparent',
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                    marginLeft: '20px',
-                }}
-            >
-                <Typography
-                    style={{
-                        fontFamily: 'Quicksand',
-                        fontSize: 40,
-                    }}
-                >
-                    Mellitus
-                </Typography>
-            </Header>
+            <NavBar />
             <Content
                 style={{
                     display: 'flex',

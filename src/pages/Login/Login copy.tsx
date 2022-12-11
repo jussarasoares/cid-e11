@@ -2,19 +2,20 @@ import { ReactElement } from 'react'
 import { Layout, Row, Col, Typography, Image } from 'antd'
 import { Link } from 'react-router-dom'
 import FormRegister from '../../components/FormRegister/FormRegister'
-import Sider from 'antd/lib/layout/Sider'
 
 import imageFruit from '../../assets/mellitus.png'
 
 const { Header, Content, Footer } = Layout
 
-function Main(): ReactElement {
+function Login(): ReactElement {
     return (
         <Layout style={{ height: '100vh' }}>
-            <Header style={{ backgroundColor: '#c2f1c2' }}>
+            <Header style={{ backgroundColor: '#e4e7e4' }}>
                 <Typography.Title
-                    level={2}
-                    style={{ color: '#6a6d6b', marginTop: '10px' }}
+                    style={{
+                        fontFamily: 'Quicksand',
+                        fontSize: 40,
+                    }}
                 >
                     Mellitus
                 </Typography.Title>
@@ -61,4 +62,4 @@ function Main(): ReactElement {
     )
 }
 
-export default Main
+export default Login

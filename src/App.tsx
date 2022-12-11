@@ -3,9 +3,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import 'antd/dist/antd.css'
 import './App.css'
 import DataRegister from './pages/MeasuresList/MeasuresList'
-import Main from './pages/Main/Main'
 import MeasureRegister from './pages/MeasureRegister/MeasureRegister'
 import Home from './pages/Home/Home'
+import Login from './pages/Login/Login'
+import Register from './pages/Register/Register'
+import { AuthContext } from './services/authContext'
 
 const router = createBrowserRouter([
     {
@@ -13,8 +15,12 @@ const router = createBrowserRouter([
         element: <Home />,
     },
     {
-        path: '/main',
-        element: <Main />,
+        path: '/login',
+        element: <Login />,
+    },
+    {
+        path: '/register',
+        element: <Register />,
     },
     {
         path: '/data-register',
@@ -33,7 +39,15 @@ const router = createBrowserRouter([
 function App(): ReactElement {
     return (
         <div className='App'>
-            <RouterProvider router={router} />
+            <AuthContext.Provider
+                value={{
+                    id: 1,
+                    name: 'Jussara',
+                    email: 'email@email.com',
+                }}
+            >
+                <RouterProvider router={router} />
+            </AuthContext.Provider>
         </div>
     )
 }
