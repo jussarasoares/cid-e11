@@ -41,11 +41,8 @@ function FormLogin(): ReactElement {
                     )}
                 />
             </Form.Item>
-            <Form.Item>
-                <Button
-                    htmlType='submit'
-                    style={{ backgroundColor: '#dad3d3' }}
-                >
+            <Form.Item style={{ textAlign: 'center' }}>
+                <Button htmlType='submit' style={{ width: '50%' }}>
                     Entrar
                 </Button>
             </Form.Item>

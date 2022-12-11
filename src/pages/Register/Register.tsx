@@ -40,6 +40,7 @@ function Register(): ReactElement {
                                         style={{
                                             color: '#6a6d6b',
                                             fontFamily: 'Quicksand',
+                                            marginBottom: '30px',
                                         }}
                                     >
                                         Cadastre-se

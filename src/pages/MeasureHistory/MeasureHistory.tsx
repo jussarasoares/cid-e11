@@ -11,7 +11,7 @@ interface DataTable {
     note: string
 }
 
-function MeasuresList(): ReactElement {
+function MeasureHistory(): ReactElement {
     const [measure, setMeasure] = useState([])
     const [messageApi, contextHolder] = message.useMessage()
 
@@ -69,4 +69,4 @@ function MeasuresList(): ReactElement {
     )
 }
 
-export default MeasuresList
+export default MeasureHistory

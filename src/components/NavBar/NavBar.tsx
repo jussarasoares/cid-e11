@@ -29,12 +29,20 @@ function NavBar(): ReactElement {
         items = [
             {
                 key: '1',
-                label: <a onClick={() => navigate(`/register`)}>Nova medida</a>,
+                label: (
+                    <a
+                        onClick={() =>
+                            navigate(`/new-measure/${userLogged.id}`)
+                        }
+                    >
+                        Nova medida
+                    </a>
+                ),
             },
             {
                 key: '2',
                 label: (
-                    <a onClick={() => navigate(`/register`)}>
+                    <a onClick={() => navigate(`/measure-history`)}>
                         Histórico de medidas
                     </a>
                 ),

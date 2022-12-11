@@ -2,12 +2,12 @@ import { ReactElement } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import 'antd/dist/antd.css'
 import './App.css'
-import DataRegister from './pages/MeasuresList/MeasuresList'
-import MeasureRegister from './pages/MeasureRegister/MeasureRegister'
 import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import { AuthContext } from './services/authContext'
+import NewMeasure from './pages/NewMeasure/NewMeasure'
+import MeasureHistory from './pages/MeasureHistory/MeasureHistory'
 
 const router = createBrowserRouter([
     {
@@ -23,16 +23,16 @@ const router = createBrowserRouter([
         element: <Register />,
     },
     {
-        path: '/data-register',
-        element: <DataRegister />,
+        path: '/measure-history',
+        element: <MeasureHistory />,
     },
     {
-        path: '/measure-register/:userId',
-        element: <MeasureRegister />,
+        path: '/new-measure/:userId',
+        element: <NewMeasure />,
     },
     {
-        path: '/measure-register/:userId/:id',
-        element: <MeasureRegister />,
+        path: '/new-measure/:userId/:id',
+        element: <NewMeasure />,
     },
 ])
 

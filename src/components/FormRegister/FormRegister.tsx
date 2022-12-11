@@ -11,11 +11,7 @@ interface IFormInput {
 }
 
 function FormRegister(): ReactElement {
-    const {
-        control,
-        handleSubmit,
-        // formState: { errors },
-    } = useForm<IFormInput>()
+    const { control, handleSubmit } = useForm<IFormInput>()
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
         try {
@@ -60,12 +56,8 @@ function FormRegister(): ReactElement {
                     )}
                 />
             </Form.Item>
-            <Form.Item>
-                <Button
-                    type='primary'
-                    htmlType='submit'
-                    style={{ backgroundColor: '' }}
-                >
+            <Form.Item style={{ textAlign: 'center' }}>
+                <Button htmlType='submit' style={{ width: '50%' }}>
                     Enviar
                 </Button>
             </Form.Item>
