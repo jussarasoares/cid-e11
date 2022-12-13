@@ -46,7 +46,8 @@ function Home(): ReactElement {
                         width: '300px',
                         boxShadow: '2px 2px 2px #ADD8E6',
                     }}
-                    onClick={() => navigate(`/main`)}
+                    href='https://www.youtube.com/watch?v=iaVt9xSSeA8'
+                    target='_blank'
                 >
                     Saiba mais
                 </Button>

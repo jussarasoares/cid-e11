@@ -1,7 +1,7 @@
 import { ReactElement, useContext } from 'react'
 import { Layout, Typography, Dropdown, Menu } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
-import { MenuOutlined } from '@ant-design/icons'
+import { UserOutlined, MenuOutlined, LogoutOutlined } from '@ant-design/icons'
 import { AuthContext } from '../../services/authContext'
 
 const { Header } = Layout
@@ -25,10 +25,19 @@ function NavBar(): ReactElement {
         },
     ]
 
-    if (userLogged.id) {
+    if (userLogged?.id) {
         items = [
             {
                 key: '1',
+                label: (
+                    <span>
+                        <UserOutlined style={{ marginRight: '10px' }} />
+                        {userLogged.name}
+                    </span>
+                ),
+            },
+            {
+                key: '2',
                 label: (
                     <a
                         onClick={() =>
@@ -40,11 +49,20 @@ function NavBar(): ReactElement {
                 ),
             },
             {
-                key: '2',
+                key: '3',
                 label: (
                     <a onClick={() => navigate(`/measure-history`)}>
                         Histórico de medidas
                     </a>
+                ),
+            },
+            {
+                key: '4',
+                label: (
+                    <span>
+                        <LogoutOutlined style={{ marginRight: '10px' }} />
+                        Sair
+                    </span>
                 ),
             },
         ]

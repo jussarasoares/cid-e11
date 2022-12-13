@@ -6,4 +6,4 @@ export interface IAuthContext {
     email: string
 }
 
-export const AuthContext = createContext({} as IAuthContext)
+export const AuthContext = createContext({} as IAuthContext | null)

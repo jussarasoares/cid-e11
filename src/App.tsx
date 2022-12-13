@@ -1,7 +1,6 @@
 import { ReactElement } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import 'antd/dist/antd.css'
-import './App.css'
 import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
@@ -38,17 +37,16 @@ const router = createBrowserRouter([
 
 function App(): ReactElement {
     return (
-        <div className='App'>
-            <AuthContext.Provider
-                value={{
-                    id: 1,
-                    name: 'Jussara',
-                    email: 'email@email.com',
-                }}
-            >
-                <RouterProvider router={router} />
-            </AuthContext.Provider>
-        </div>
+        <AuthContext.Provider
+            value={{
+                id: 1,
+                name: 'Jussara',
+                email: 'email@email.com',
+            }}
+            // value={null}
+        >
+            <RouterProvider router={router} />
+        </AuthContext.Provider>
     )
 }
 

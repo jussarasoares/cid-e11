@@ -15,31 +15,28 @@ function Login(): ReactElement {
                 <Col span={12}>
                     <Content
                         style={{
-                            backgroundColor: '#ebf7eb',
-                            paddingTop: '50px',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            marginTop: '20vh',
+                            height: '100%',
                         }}
                     >
-                        <Row>
-                            <Col
-                                span={10}
-                                offset={2}
-                                style={{ justifyItems: 'center' }}
+                        <Card
+                            bordered={false}
+                            style={{ width: '400px', height: '300px' }}
+                        >
+                            <Typography.Title
+                                level={4}
+                                style={{
+                                    color: '#6a6d6b',
+                                    fontFamily: 'Quicksand',
+                                    marginBottom: '30px',
+                                }}
                             >
-                                <Card bordered={false}>
-                                    <Typography.Title
-                                        level={4}
-                                        style={{
-                                            color: '#6a6d6b',
-                                            fontFamily: 'Quicksand',
-                                            marginBottom: '30px',
-                                        }}
-                                    >
-                                        Entre
-                                    </Typography.Title>
-                                    <FormLogin />
-                                </Card>
-                            </Col>
-                        </Row>
+                                Entre
+                            </Typography.Title>
+                            <FormLogin />
+                        </Card>
                     </Content>
                 </Col>
                 <Col

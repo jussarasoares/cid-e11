@@ -2,10 +2,11 @@ import { ReactElement } from 'react'
 import { Button, Space, Table } from 'antd'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
+import TableEmptyState from '../TableEmptyState/TableEmptyState'
 
 const { Column } = Table
 
-interface DataTable {
+interface IDataTable {
     id: string
     date: Date
     measure: object
@@ -14,7 +15,7 @@ interface DataTable {
 }
 
 interface TableRegisterProps {
-    data: DataTable[]
+    data: IDataTable[]
     onDeleteMeasure: (id: string) => void
 }
 
@@ -25,6 +26,7 @@ function TableRegister(props: TableRegisterProps): ReactElement {
         <Table
             rowKey='id'
             dataSource={props.data}
+            locale={{ emptyText: <TableEmptyState /> }}
             style={{ paddingTop: '30px' }}
         >
             <Column title='Data' dataIndex='date' key='date' />
@@ -47,7 +49,7 @@ function TableRegister(props: TableRegisterProps): ReactElement {
             <Column title='Observações' dataIndex='note' key='note' />
             <Column
                 key='action'
-                render={(_: any, record: DataTable) => (
+                render={(_: any, record: IDataTable) => (
                     <Space>
                         <Button
                             type='default'
