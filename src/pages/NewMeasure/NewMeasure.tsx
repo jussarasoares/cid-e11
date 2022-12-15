@@ -68,7 +68,7 @@ function NewMeasure(): ReactElement {
                 })
                 setTimeout(() => {
                     navigate(`/measure-history`)
-                }, 2500)
+                }, 800)
                 return
             }
             await api.post(`/measure/${userId}`, payload)
@@ -78,7 +78,7 @@ function NewMeasure(): ReactElement {
             })
             setTimeout(() => {
                 navigate(`/measure-history`)
-            }, 2500)
+            }, 800)
         } catch (e) {
             messageApi.open({
                 type: 'error',
