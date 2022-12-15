@@ -27,12 +27,11 @@ function Register(): ReactElement {
                             display: 'flex',
                             justifyContent: 'center',
                             marginTop: '20vh',
-                            height: '100%',
                         }}
                     >
                         <Card
                             bordered={false}
-                            style={{ width: '400px', height: '300px' }}
+                            style={{ width: '400px', height: '400px' }}
                         >
                             <Typography.Title
                                 level={4}

@@ -14,7 +14,7 @@ import { Content } from 'antd/lib/layout/layout'
 import TableRegister from '../../components/TableRegister/TableRegister'
 import api from '../../services/api'
 import NavBar from '../../components/NavBar/NavBar'
-import { AuthContext } from '../../services/authContext'
+import { AuthContext } from '../../components/AuthProvider/AuthProvider'
 
 import imageRegister from '../../assets/cide4.jpg'
 
@@ -32,7 +32,7 @@ function MeasureHistory(): ReactElement {
     const [messageApi, contextHolder] = message.useMessage()
     const navigate = useNavigate()
 
-    const userLogged = useContext(AuthContext)
+    const { userLogged } = useContext(AuthContext)
 
     const fetchMeasure = async () => {
         try {
@@ -73,15 +73,14 @@ function MeasureHistory(): ReactElement {
             {contextHolder}
             <Content
                 style={{
-                    height: '100vh',
+                    height: '100%',
                     backgroundImage: `url(${imageRegister})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     opacity: '0.9',
-                    paddingTop: '5vh',
                 }}
             >
-                <Card style={{ margin: '0 5vw' }}>
+                <Card style={{ margin: '5vw' }}>
                     <Row>
                         <Col span={8}>
                             <Typography.Title

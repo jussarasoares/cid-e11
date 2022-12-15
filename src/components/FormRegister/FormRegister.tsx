@@ -1,8 +1,10 @@
 import { ReactElement } from 'react'
-import { Button, Form, Input } from 'antd'
+import { Button, Form, Input, message } from 'antd'
 import 'antd/dist/antd.css'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import api from '../../services/api'
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons'
 
 interface IFormInput {
     name: string
@@ -12,17 +14,30 @@ interface IFormInput {
 
 function FormRegister(): ReactElement {
     const { control, handleSubmit } = useForm<IFormInput>()
+    const [messageApi, contextHolder] = message.useMessage()
+    const navigate = useNavigate()
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
         try {
-            await api.post('/user', data)
+            await api.post('/register', data)
+            messageApi.open({
+                type: 'success',
+                content: 'Usuário criado!',
+            })
+            setTimeout(() => {
+                navigate(`/login`)
+            }, 500)
         } catch (e) {
-            console.log(e)
+            messageApi.open({
+                type: 'error',
+                content: 'Não foi possível criar um usuário :(',
+            })
         }
     }
 
     return (
-        <Form onFinish={handleSubmit(onSubmit)}>
+        <Form onFinish={handleSubmit(onSubmit)} layout='vertical'>
+            {contextHolder}
             <Form.Item label='Nome'>
                 <Controller
                     name='name'
@@ -52,7 +67,17 @@ function FormRegister(): ReactElement {
                     name='password'
                     control={control}
                     render={({ field }) => (
-                        <Input placeholder='Digite uma senha' {...field} />
+                        <Input.Password
+                            placeholder='Digite uma senha'
+                            {...field}
+                            iconRender={(visible) =>
+                                visible ? (
+                                    <EyeTwoTone />
+                                ) : (
+                                    <EyeInvisibleOutlined />
+                                )
+                            }
+                        />
                     )}
                 />
             </Form.Item>

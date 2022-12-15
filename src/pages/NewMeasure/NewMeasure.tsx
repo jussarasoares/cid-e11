@@ -5,8 +5,6 @@ import {
     Input,
     InputNumber,
     Layout,
-    Row,
-    Col,
     Typography,
     DatePicker,
     message,
@@ -69,7 +67,7 @@ function NewMeasure(): ReactElement {
                     content: 'Editado com sucesso!',
                 })
                 setTimeout(() => {
-                    navigate(`/data-register`)
+                    navigate(`/measure-history`)
                 }, 2500)
                 return
             }
@@ -94,121 +92,140 @@ function NewMeasure(): ReactElement {
             <NavBar />
             <Content
                 style={{
-                    height: '100vh',
                     backgroundImage: `url(${imageRegister})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     opacity: '0.9',
-                    paddingTop: '50px',
+                    padding: '50px 0',
+                    display: 'flex',
+                    justifyContent: 'center',
                 }}
             >
                 {contextHolder}
-                <Row>
-                    <Col span={8} offset={9}>
-                        <Card>
-                            <Typography.Title
-                                level={4}
-                                style={{
-                                    color: '#6a6d6b',
-                                    fontFamily: 'Quicksand',
-                                    marginBottom: '30px',
-                                }}
-                            >
-                                Registre suas medições de glicemia
-                            </Typography.Title>
-                            <Form onFinish={handleSubmit(onSubmit)}>
-                                <Form.Item label='Data'>
-                                    <Controller
-                                        name='date'
-                                        control={control}
-                                        render={({ field }) => (
-                                            <DatePicker
-                                                style={{ width: '100%' }}
-                                                {...field}
-                                                value={moment(field.value)}
-                                                format='DD/MM/YYYY'
-                                                allowClear={false}
-                                            />
-                                        )}
+                <Card>
+                    <Typography.Title
+                        level={4}
+                        style={{
+                            color: '#6a6d6b',
+                            fontFamily: 'Quicksand',
+                            marginBottom: '30px',
+                            width: '600px',
+                        }}
+                    >
+                        Registre suas medições de glicemia
+                    </Typography.Title>
+                    <Form onFinish={handleSubmit(onSubmit)} layout='vertical'>
+                        <Form.Item label='Data'>
+                            <Controller
+                                name='date'
+                                control={control}
+                                render={({ field }) => (
+                                    <DatePicker
+                                        style={{
+                                            width: '100%',
+                                        }}
+                                        {...field}
+                                        value={moment(field.value)}
+                                        format='DD/MM/YYYY'
+                                        allowClear={false}
                                     />
-                                </Form.Item>
-                                <Form.Item label='Jejum'>
-                                    <Controller
-                                        name='fast'
-                                        control={control}
-                                        render={({ field }) => (
-                                            <InputNumber
-                                                style={{ width: '100%' }}
-                                                placeholder='Insira o valor do mg/dL'
-                                                {...field}
-                                            />
-                                        )}
+                                )}
+                            />
+                        </Form.Item>
+                        {/* <Row>
+                            <Col span={11}> */}
+                        <Form.Item label='Jejum'>
+                            <Controller
+                                name='fast'
+                                control={control}
+                                render={({ field }) => (
+                                    <InputNumber
+                                        style={{
+                                            width: '100%',
+                                        }}
+                                        placeholder='Insira o valor do mg/dL'
+                                        {...field}
                                     />
-                                </Form.Item>
-                                <Form.Item label='2h depois do café'>
-                                    <Controller
-                                        name='coffee'
-                                        control={control}
-                                        render={({ field }) => (
-                                            <InputNumber
-                                                style={{ width: '100%' }}
-                                                placeholder='Insira o valor do mg/dL'
-                                                {...field}
-                                            />
-                                        )}
+                                )}
+                            />
+                        </Form.Item>
+                        {/* </Col>
+                            <Col span={11} offset={2}> */}
+                        <Form.Item label='2h depois do café'>
+                            <Controller
+                                name='coffee'
+                                control={control}
+                                render={({ field }) => (
+                                    <InputNumber
+                                        style={{
+                                            width: '100%',
+                                        }}
+                                        placeholder='Insira o valor do mg/dL'
+                                        {...field}
                                     />
-                                </Form.Item>
-                                <Form.Item label='2h depois do almoço'>
-                                    <Controller
-                                        name='lunch'
-                                        control={control}
-                                        render={({ field }) => (
-                                            <InputNumber
-                                                style={{ width: '100%' }}
-                                                placeholder='Insira o valor do mg/dL'
-                                                {...field}
-                                            />
-                                        )}
+                                )}
+                            />
+                        </Form.Item>
+                        {/* </Col>
+                        </Row> */}
+                        {/* <Row>
+                            <Col span={11}> */}
+                        <Form.Item label='2h depois do almoço'>
+                            <Controller
+                                name='lunch'
+                                control={control}
+                                render={({ field }) => (
+                                    <InputNumber
+                                        style={{
+                                            width: '100%',
+                                        }}
+                                        placeholder='Insira o valor do mg/dL'
+                                        {...field}
                                     />
-                                </Form.Item>
-                                <Form.Item label='2h depois do jantar'>
-                                    <Controller
-                                        name='dinner'
-                                        control={control}
-                                        render={({ field }) => (
-                                            <InputNumber
-                                                style={{ width: '100%' }}
-                                                placeholder='Insira o valor do mg/dL'
-                                                {...field}
-                                            />
-                                        )}
+                                )}
+                            />
+                        </Form.Item>
+                        {/* </Col>
+                            <Col span={11} offset={2}> */}
+                        <Form.Item label='2h depois do jantar'>
+                            <Controller
+                                name='dinner'
+                                control={control}
+                                render={({ field }) => (
+                                    <InputNumber
+                                        style={{
+                                            width: '100%',
+                                        }}
+                                        placeholder='Insira o valor do mg/dL'
+                                        {...field}
                                     />
-                                </Form.Item>
-                                <Form.Item label='Observações'>
-                                    <Controller
-                                        name='note'
-                                        control={control}
-                                        render={({ field }) => (
-                                            <Input
-                                                style={{ width: '100%' }}
-                                                placeholder='Alguma observação?'
-                                                {...field}
-                                            />
-                                        )}
+                                )}
+                            />
+                        </Form.Item>
+                        {/* </Col>
+                        </Row> */}
+                        <Form.Item label='Observações'>
+                            <Controller
+                                name='note'
+                                control={control}
+                                render={({ field }) => (
+                                    <Input
+                                        style={{
+                                            width: '100%',
+                                        }}
+                                        placeholder='Alguma observação?'
+                                        {...field}
                                     />
-                                </Form.Item>
-                                <Form.Item style={{ textAlign: 'center' }}>
-                                    <Button
-                                        htmlType='submit'
-                                        style={{ width: '50%' }}
-                                    >
-                                        Enviar
-                                    </Button>
-                                </Form.Item>
-                            </Form>
-                        </Card>
-                    </Col>
-                </Row>
+                                )}
+                            />
+                        </Form.Item>
+                        <Form.Item style={{ textAlign: 'center' }}>
+                            <Button htmlType='submit' style={{ width: '50%' }}>
+                                Enviar
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                </Card>
             </Content>
         </Layout>
     )

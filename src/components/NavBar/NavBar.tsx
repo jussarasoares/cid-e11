@@ -2,7 +2,7 @@ import { ReactElement, useContext } from 'react'
 import { Layout, Typography, Dropdown, Menu } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
 import { UserOutlined, MenuOutlined, LogoutOutlined } from '@ant-design/icons'
-import { AuthContext } from '../../services/authContext'
+import { AuthContext } from '../AuthProvider/AuthProvider'
 
 const { Header } = Layout
 
@@ -13,7 +13,13 @@ interface IItems {
 
 function NavBar(): ReactElement {
     const navigate = useNavigate()
-    const userLogged = useContext(AuthContext)
+    const { userLogged, setUserLogged } = useContext(AuthContext)
+
+    const onLogout = () => {
+        setUserLogged(null)
+        navigate(`/login`)
+    }
+
     let items: IItems[] = [
         {
             key: '1',
@@ -59,10 +65,10 @@ function NavBar(): ReactElement {
             {
                 key: '4',
                 label: (
-                    <span>
+                    <a onClick={onLogout}>
                         <LogoutOutlined style={{ marginRight: '10px' }} />
                         Sair
-                    </span>
+                    </a>
                 ),
             },
         ]
@@ -70,7 +76,9 @@ function NavBar(): ReactElement {
 
     const menu = (
         <Menu
-            style={{ backgroundColor: 'transparent', fontFamily: 'Quicksand' }}
+            style={{
+                fontFamily: 'Quicksand',
+            }}
             items={items}
         />
     )

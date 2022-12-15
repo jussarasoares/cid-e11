@@ -4,7 +4,7 @@ import 'antd/dist/antd.css'
 import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
-import { AuthContext } from './services/authContext'
+import AuthProvider from './components/AuthProvider/AuthProvider'
 import NewMeasure from './pages/NewMeasure/NewMeasure'
 import MeasureHistory from './pages/MeasureHistory/MeasureHistory'
 
@@ -37,16 +37,9 @@ const router = createBrowserRouter([
 
 function App(): ReactElement {
     return (
-        <AuthContext.Provider
-            value={{
-                id: 1,
-                name: 'Jussara',
-                email: 'email@email.com',
-            }}
-            // value={null}
-        >
+        <AuthProvider>
             <RouterProvider router={router} />
-        </AuthContext.Provider>
+        </AuthProvider>
     )
 }
 

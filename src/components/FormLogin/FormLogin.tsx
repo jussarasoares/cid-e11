@@ -1,8 +1,11 @@
-import { ReactElement } from 'react'
-import { Button, Form, Input } from 'antd'
+import { ReactElement, useContext } from 'react'
+import { Button, Form, Input, message } from 'antd'
 import 'antd/dist/antd.css'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import api from '../../services/api'
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons'
+import { AuthContext } from '../AuthProvider/AuthProvider'
 
 interface IFormInput {
     name: string
@@ -12,17 +15,28 @@ interface IFormInput {
 
 function FormLogin(): ReactElement {
     const { control, handleSubmit } = useForm<IFormInput>()
+    const [messageApi, contextHolder] = message.useMessage()
+    const navigate = useNavigate()
 
-    const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    const { setUserLogged } = useContext(AuthContext)
+
+    const onSubmit: SubmitHandler<IFormInput> = async (payload) => {
         try {
-            await api.post('/user', data)
+            const { data } = await api.post('/login', payload)
+            setUserLogged(data.result)
+            navigate(`/measure-history`)
         } catch (e) {
             console.log(e)
+            messageApi.open({
+                type: 'error',
+                content: 'Não foi possível logar :(',
+            })
         }
     }
 
     return (
-        <Form onFinish={handleSubmit(onSubmit)}>
+        <Form onFinish={handleSubmit(onSubmit)} layout='vertical'>
+            {contextHolder}
             <Form.Item label='Email'>
                 <Controller
                     name='email'
@@ -37,7 +51,17 @@ function FormLogin(): ReactElement {
                     name='password'
                     control={control}
                     render={({ field }) => (
-                        <Input placeholder='Digite sua senha' {...field} />
+                        <Input.Password
+                            placeholder='Digite sua senha'
+                            {...field}
+                            iconRender={(visible) =>
+                                visible ? (
+                                    <EyeTwoTone />
+                                ) : (
+                                    <EyeInvisibleOutlined />
+                                )
+                            }
+                        />
                     )}
                 />
             </Form.Item>

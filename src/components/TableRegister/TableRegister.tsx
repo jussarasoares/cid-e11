@@ -2,6 +2,7 @@ import { ReactElement } from 'react'
 import { Button, Space, Table } from 'antd'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
+import moment from 'moment'
 import TableEmptyState from '../TableEmptyState/TableEmptyState'
 
 const { Column } = Table
@@ -29,7 +30,14 @@ function TableRegister(props: TableRegisterProps): ReactElement {
             locale={{ emptyText: <TableEmptyState /> }}
             style={{ paddingTop: '30px' }}
         >
-            <Column title='Data' dataIndex='date' key='date' />
+            <Column
+                title='Data'
+                dataIndex='date'
+                key='date'
+                render={(data: any) =>
+                    data ? moment(data).format('DD/MM/YYYY') : ''
+                }
+            />
             <Column title='Jejum' dataIndex={'fast'} key='fast' />
             <Column
                 title='2h depois do café'
@@ -57,7 +65,7 @@ function TableRegister(props: TableRegisterProps): ReactElement {
                             icon={<EditOutlined />}
                             onClick={() =>
                                 navigate(
-                                    `/measure-register/${record.userId}/${record.id}`
+                                    `/new-measure/${record.userId}/${record.id}`
                                 )
                             }
                         />
